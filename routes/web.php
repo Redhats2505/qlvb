@@ -11,14 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DocumentController@index')-> middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'DocumentController@index')->name('home');
 
-Auth::routes();
+Route::get('tailieu', 'DocumentController@index'); // Hiển thị danh sách tài liệu
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('tailieu/create', 'DocumentController@create'); // Thêm mới tài liệu
+Route::post('tailieu/create', 'DocumentController@store'); // Xử lý thêm mới tài liệu
+Route::get('tailieu/{id}/edit', 'DocumentController@edit'); // Sửa tài liệu
+Route::post('tailieu/update', 'DocumentController@update'); // Xử lý sửa tài liệu
+Route::get('tailieu/{id}/delete', 'DocumentController@destroy'); // Xóa tài liệu
+Route::get('tailieu/{id}', 'DocumentController@show'); // Hiển thị chi tiết tài liệu
+Route::get('laravel-send-email', 'EmailController@sendEMail');

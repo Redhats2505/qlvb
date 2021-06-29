@@ -1,25 +1,16 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> @yield('title')</title>
+        <link href="{{asset('css/bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
+    	<link href="{{asset('css/dataTables.bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
+        <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'BTP Holdings') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
+    </head>
+    <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -71,10 +62,41 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
     </div>
-</body>
-</html>
+        <div class="container">
+        
+            @section('content')
+            @show
+        </div>
+        
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="{!! url('js/dataTables.bootstrap.min.js') !!}"></script>
+        <script type="text/javascript" src="{!! url('js/bootstrap.min.js') !!}"></script>
+        <!--<script type="text/javascript" src="{!! url('js/jquery.dataTables.min.js') !!}"></script>-->
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    	<script>
+    		$(document).ready(function() {
+    			$('#DataList').dataTable({
+    				"aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tất cả"]],
+    				"iDisplayLength": 10,
+    				"oLanguage": {
+    					"sLengthMenu": "Hiển thị _MENU_ dòng mỗi trang",
+    					"oPaginate": {
+    						"sFirst": "<span class='glyphicon glyphicon-step-backward' aria-hidden='false'></span>",
+    						"sLast": "<span class='glyphicon glyphicon-step-forward' aria-hidden='true'></span>",
+    						"sNext": "<span class='glyphicon glyphicon-triangle-right' aria-hidden='true'></span>",
+    						"sPrevious": "<span class='glyphicon glyphicon-triangle-left' aria-hidden='true'></span>"
+    					},
+    					"sEmptyTable": "Không có dữ liệu",
+    					"sSearch": "Tìm kiếm:",
+    					"sZeroRecords": "Không có dữ liệu",
+    					"sInfo": "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ dòng được tìm thấy",
+    					"sInfoEmpty" : "Không tìm thấy",
+    					"sInfoFiltered": " (trong tổng số _MAX_ dòng)"
+    				}
+    			});
+    		});
+    	</script>
+        
+    </body>
+    </html>
