@@ -25,4 +25,4 @@ Route::get('tailieu/{id}/edit', 'DocumentController@edit'); // Sửa tài liệu
 Route::post('tailieu/update', 'DocumentController@update'); // Xử lý sửa tài liệu
 Route::get('tailieu/{id}/delete', 'DocumentController@destroy'); // Xóa tài liệu
 Route::get('tailieu/{id}', 'DocumentController@show'); // Hiển thị chi tiết tài liệu
-Route::get('laravel-send-email', 'EmailController@sendEMail');
+Route::get('mail', 'EmailController@sendEMail');

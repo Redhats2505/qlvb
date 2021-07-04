@@ -6,7 +6,7 @@
 <body>
  
  <h1>This is test mail from hoso.btpholdings.vn</h1>
- <p>Thank you, {{ $user->name }}</p>
+ <p>Thank you, </p>
  
 </body>
 </html> 

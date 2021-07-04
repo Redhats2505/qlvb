@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Redirect,Response,DB,Config;
 use Mail;
+use App\Mail\MailNotify;
+
 class EmailController extends Controller
 {
-    public function sendEmail()
-    {
-      $user = auth()->user();
-      Mail::to($user)->send(new MailNotify($user));
- 
-      if (Mail::failures()) {
-           return response()->Fail('Sorry! Please try again latter');
-      }else{
-           return response()->success('Great! Successfully send in your mail');
-         }
-    }
+    
+     public function SendEmail(){
+          $data = [];
+          Mail::send('email.email',$data,function($message){
+              $message-> from('cntt.hoso@btpholdings.vn','Quản lý Hồ sơ BTP Holdings');
+              $message-> to('cntt.phanmem@btpholdings.vn','Quản lý Hồ sơ BTP Holdings');
+              $message-> subject('Email test');
+          }
+          );
+     }
+
 }

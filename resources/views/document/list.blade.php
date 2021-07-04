@@ -5,7 +5,6 @@
 @section('content')
 
 <?php //Hiển thị thông báo thành công?>
-<div class="page-header"><h4>Quản lý tài liệu</h4></div>
 
 @if ( Session::has('success') )
     <div class="alert alert-success alert-dismissible" role="alert">
@@ -80,7 +79,7 @@
                         <?php //Lấy số điện thoại?>
                         <td><a href="/tailieu/{{ $tailieu->id }}">{{ $tailieu->description }}</td>
                         <td>{{ $tailieu->date_expried }}</td>
-                        <td>{{ $tailieu->notif_date }}</td>
+                        <td>{{ $tailieu->notif_date }} Ngày</td>
                         <td style="text-align: center; vertical-align: middle; width: 10%;">
 							@if($tailieu->document != '')
 								<a class="btn btn-primary" href="/public/upload/Document/{{ $tailieu->document }}">Download về máy</a>
@@ -91,7 +90,14 @@
                         <?php //Tạo nút sửa tài liệu?>
                         <td><a href="/tailieu/{{ $tailieu->id }}/edit">Sửa</a></td>
                         <?php //Tạo nút xóa tài liệu?>
+                        @if( Auth::user()->level == 1)
                         <td><a href="/tailieu/{{ $tailieu->id }}/delete">Xóa</a></td>
+                        @elseif( Auth::user()->level == 2)
+                        <td><a href="/tailieu/{{ $tailieu->id }}/delete">Xóa</a></td>
+                        @elseif( Auth::user()->level == 3)
+                        <td><a >Xóa</a></td>
+                        @endif
+                        
                     </tr>
                 <?php //Kết thúc vòng lập foreach?>
                 @endforeach
