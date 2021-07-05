@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <!--<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img alt="logo" src="/img/logoBTP.jpeg" width="200" height="60">
                 </a>
@@ -29,23 +29,23 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <!--<ul class="navbar-nav mr-auto">
 
-                    </ul>
+                    </ul>--> 
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <!--<ul class="navbar-nav ml-auto">-->
                         <!-- Authentication Links -->
-                        @guest
+                       <!-- @guest-->
                             <!--<li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Đăng ký') }}</a>
                             </li>-->
-                        @else
+                        <!--@else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }} <span class="caret"></span>
@@ -66,8 +66,8 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-        <div class="page-header"><a href="/"><img src="{{ asset('img/bach-tuong-phat-banner.png') }}" width="100%" height="auto" title="Quản lý hồ sơ"  alt="Quản lý hồ sơ"/></a>
+        </nav>-->
+        <div class="page-header"><a href="/"><img src="{{ asset('img/BTPHoldings.png') }}" width="100%" height="auto" title="Quản lý hồ sơ"  alt="Quản lý hồ sơ"/></a>
         <main class="py-4">
             @yield('content')
         </main>

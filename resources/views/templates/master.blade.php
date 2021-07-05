@@ -57,7 +57,7 @@
                 </div>
             </div>
         </nav>
-        <div class="page-header"><a href="/"><img src="{{ asset('img/bach-tuong-phat-banner.png') }}" width="100%" height="auto" title="Quản lý hồ sơ"  alt="Quản lý hồ sơ"/></a>
+        <div class="page-header"><a href="/"><img src="{{ asset('img/Btpholdings.png') }}" width="100%" height="auto" title="Quản lý hồ sơ"  alt="Quản lý hồ sơ"/></a>
     </div>
         <div class="container">
         
