@@ -5,7 +5,7 @@
 </head>
 <body>
  
- <h1>This is test mail from hoso.btpholdings.vn</h1>
+ <h1>tài liệu {{$title}} sắp hết hạn</h1>
  <p>Thank you, </p>
  
 </body>
