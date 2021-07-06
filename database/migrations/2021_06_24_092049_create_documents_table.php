@@ -20,6 +20,9 @@ class CreateDocumentsTable extends Migration
             $table->string('document')->nullable();
             $table->date('date_expried')->nullable();
             $table->integer('notif_date')->nullable();
+            $table->string('email_notif')->nullable();
+            $table->integer('status')->nullable();
+            $table->integer('id_parent')->nullable();
             $table->uuid('Create_uid')->nullable();
             $table->uuid('Edit_uid')->nullable();
             $table->timestamps();

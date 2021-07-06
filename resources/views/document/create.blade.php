@@ -65,6 +65,10 @@
         <div class="form-group">
         <label for="notif_date">Số ngày cảnh báo trước</label>
         <input type="number" class="form-control" id="notif_date"  name="notif_date"/>
+        </div>
+        <div class="form-group">
+            <label for="email_notif">Email nhận thông báo</label>
+            <input type="text" class="form-control" id="email_notif"  name="email_notif" placeholder="Email" required />
         </div>		
         <center><button type="submit" class="btn btn-primary">Thêm</button></center>
     </form>

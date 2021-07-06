@@ -1,0 +1,128 @@
+.container{
+width: 100%;
+padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;
+
+}
+.menu-top {
+    padding: 12px 0;
+    float: left;
+    margin-bottom: 0;
+}
+.menu-top li {
+    display: inline-block;
+    list-style: none;
+}
+.coppy-right {
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    background: #0c0c0c;
+    color: #fff;
+    margin-top: 50px;
+    position: sticky;
+    top: 100%;
+}
+div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0.5em;
+    display: inline-block;
+    width: auto;
+    
+    max-width: 100%;
+    padding: 10px;
+    height: 37px;
+    background: #fafafa;
+    font-size: 13px;
+}
+#example_filter label {
+    color: #fff;
+}
+.cpb {
+    color: #fff;
+}
+
+#control select {
+    padding: 7px;
+    border-radius: 5px;
+    border-color: #fff;
+    color: #8a7979;
+    width: 100%;
+    margin-bottom: 10px;
+    background: #fff;
+}
+#example_filter {
+    display: none;
+}
+.search-field { 
+    border: none;
+    border: 1px solid #ccc;
+    padding: 7px 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    color: #8a7979;
+}
+th {
+    background: #171616;
+    color: #fff;
+    text-align: center;
+}
+th::before,
+th::after {
+    color: #fff;
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .btn-db {
+        width: 100%;
+    }
+    .btn-db a {
+        font-size: 15px !important;
+    }
+}
+
+.scroll-top{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 99;
+    cursor: pointer;
+}
+.group td {
+    background: #6c757d  !important;
+    color: #fff;
+}
+@media only screen and (min-width: 600px){
+    * {
+        box-sizing: border-box;
+    }
+    table {
+      table-layout: fixed;
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 100px;
+    }
+    td,th {
+      padding: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+      
+      border: solid 1px #000;
+    }
+}
+table.dataTable thead .sorting::after {
+    opacity: .2;
+    content: "";
+}
+body{
+    min-height: 100%;
+    display: grid;
+  grid-template-rows: 1fr auto;
+}
+html{
+    height: 100%; 
+}

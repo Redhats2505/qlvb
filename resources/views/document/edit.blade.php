@@ -43,7 +43,7 @@
 <?php //Hiển thị form sửa tài liệu?>
 <p><a class="btn btn-primary" href="{{ url('/tailieu') }}">Về danh sách</a></p>
 <div class="col-xs-4 col-xs-offset-4">
-    <center><h4>Sửa học sinh</h4></center>
+    <center><h4>Sửa tài liệu</h4></center>
     <form action="{{ url('/tailieu/update') }}" method="post"enctype="multipart/form-data">
     
         <input type="hidden" id="_token" name="_token" value="{!! csrf_token() !!}" />
@@ -67,6 +67,10 @@
         <div class="form-group">
         <label for="notif_date">Số ngày cảnh báo trước</label>
         <input type="number" class="form-control" id="notif_date"  name="notif_date" value="{{ $gettailieuById[0]->notif_date }}" />
+        <div class="form-group">
+            <label for="email_notif">Email nhận cảnh báo</label>
+            <input type="text" class="form-control" id="email_notif" name="email_notif" placeholder="email" value="{{ $gettailieuById[0]->email_notif }}" required />
+        </div>
         <center><button type="submit" class="btn btn-primary">Lưu lại</button></center>
     </form>
 </div>

@@ -7,6 +7,7 @@
         <link href="{{asset('css/bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
     	<link href="{{asset('css/dataTables.bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
         <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" />
+        <link href="{{asset('css/custom.css')}}" type="text/css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
     </head>
@@ -41,12 +42,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}">
                                         {{ __('Đăng xuất') }}
                                     </a>
-
+                                   <!-- <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Đăng xuất2') }}
+                                    </a>-->
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -57,8 +60,8 @@
                 </div>
             </div>
         </nav>
-        <div class="page-header"><a href="/"><img src="{{ asset('img/Btpholdings.png') }}" width="100%" height="auto" title="Quản lý hồ sơ"  alt="Quản lý hồ sơ"/></a>
-    </div>
+        <!--<div class="page-header"><a href="/"><img src="{{ asset('img/Btpholdings.png') }}" width="100%" height="auto" title="Quản lý hồ sơ"  alt="Quản lý hồ sơ"/></a>
+    </div>-->
         <div class="container">
         
             @section('content')
@@ -93,6 +96,11 @@
     			});
     		});
     	</script>
-        
+    <div class="coppy-right">
+    <div class="container">
+        © Copyright 2021 BTP Holdings, All rights reserved.
+    </div>
+    </div> 
     </body>
+    
     </html>

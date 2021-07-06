@@ -16,8 +16,10 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        	//Lấy danh sách học sinh từ database
-	$getData = DB::table('documents')->select('id','title','description','document','date_expried','notif_date')->get();
+        	//Lấy danh sách tài liệu từ database
+	$getData = DB::table('documents as docs')
+	->leftJoin('status as status', 'docs.status', '=', 'status.id')
+	->select('docs.id','docs.title as title','docs.description','docs.document','docs.date_expried','docs.notif_date','docs.email_notif','status.title as status')->get();
 	
 	//Gọi đến file list.blade.php trong thư mục "resources/views/tailieu" với giá trị gửi đi tên listtailieu = $getData
 	return view('document.list')->with('listtailieu',$getData);
@@ -83,12 +85,13 @@ class DocumentController extends Controller
     	//Set timezone
     	date_default_timezone_set("Asia/Ho_Chi_Minh");
     	
-    	//Lấy giá trị học sinh đã nhập
+    	//Lấy giá trị tài liệu  đã nhập
     	$allRequest  = $request->all();
     	$title  = $allRequest['title'];
     	$description = $allRequest['description'];
     	$date_expried = $allRequest['date_expried'];
         $notif_date = $allRequest['notif_date'];
+		$email_notif = $allRequest['email_notif'];
     	//Gán giá trị vào array
     	$dataInsertToDatabase = array(
     		'title'  => $title,
@@ -96,6 +99,8 @@ class DocumentController extends Controller
             'document' => $gettailieu,
             'date_expried' => $date_expried,
             'notif_date' => $notif_date,
+			'email_notif' => $email_notif,
+			'status'=> '1',
     		'created_at' => date('Y-m-d H:i:s'),
     		'updated_at' => date('Y-m-d H:i:s'),
     	);
@@ -122,7 +127,7 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-    $getData = DB::table('documents')->select('id','title','description','document','date_expried','notif_date')->where('id',$id)->get();
+    $getData = DB::table('documents')->select('id','title','description','document','date_expried','notif_date','email_notif')->where('id',$id)->get();
     
     return view('document.show')->with('gettailieuById2',$getData);
     }
@@ -136,7 +141,7 @@ class DocumentController extends Controller
     public function edit($id)
     {
         	//Lấy dữ liệu từ Database với các trường được lấy và với điều kiện id = $id
-	$getData = DB::table('documents')->select('id','title','description','document','date_expried','notif_date')->where('id',$id)->get();
+	$getData = DB::table('documents')->select('id','title','description','document','date_expried','notif_date','email_notif')->where('id',$id)->get();
 	
 	//Gọi đến file edit.blade.php trong thư mục "resources/views/tailieu" với giá trị gửi đi tên gettailieuById = $getData
 	return view('document.edit')->with('gettailieuById',$getData);
@@ -161,6 +166,7 @@ class DocumentController extends Controller
 		'description' => $request->description,
         'document' => $request->document,
         'date_expried' => $request->date_expried,
+		'email_notif' => $request->email_notif,
         'notif_date' => $request->notif_date,
 		'updated_at' => date('Y-m-d H:i:s')
 	]);

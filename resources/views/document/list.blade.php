@@ -61,9 +61,10 @@
                         <th>STT</th>
                         <th>Tiêu đề</th>
                         <th>Diễn giải</th>
-                        <th>Ngày hết hạn</th>
-                        <th>Cảnh báo trước</th>
+                        <th>Hết hạn</th>
+                        <th>Cảnh báo</th>
                         <th>Tài liệu</th>
+                        <th>Trạng thái</th>
                         <th>Sửa</th>
                         <th>Xóa</th>
                     </tr>
@@ -79,7 +80,7 @@
                         <?php //Lấy số điện thoại?>
                         <td><a href="/tailieu/{{ $tailieu->id }}">{{ $tailieu->description }}</td>
                         <td>{{ $tailieu->date_expried }}</td>
-                        <td>{{ $tailieu->notif_date }} Ngày</td>
+                        <td>{{ $tailieu->notif_date }} ngày</td>
                         <td style="text-align: center; vertical-align: middle; width: 10%;">
 							@if($tailieu->document != '')
 								<a class="btn btn-primary" href="/public/upload/Document/{{ $tailieu->document }}">Download về máy</a>
@@ -87,6 +88,7 @@
 								<img onclick="MymodalImage(this);" src="/public/upload/Document/nofile.png" alt="Chưa up tài liệu" style="cursor: zoom-in;" width="60"/>
 							@endif
 						</td>
+                        <td>{{ $tailieu->status }}</td>
                         <?php //Tạo nút sửa tài liệu?>
                         <td><a href="/tailieu/{{ $tailieu->id }}/edit">Sửa</a></td>
                         <?php //Tạo nút xóa tài liệu?>
