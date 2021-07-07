@@ -72,5 +72,10 @@
             @yield('content')
         </main>
     </div>
+    <div class="coppy-right">
+    <div class="container">
+        © Copyright 2021 BTP Holdings, All rights reserved.
+    </div>
+    </div> 
 </body>
 </html>
