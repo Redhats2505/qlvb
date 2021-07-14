@@ -6,9 +6,10 @@
         <title> @yield('title')</title>
         <link href="{{asset('css/bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
     	<link href="{{asset('css/dataTables.bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
-        <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" />
+        <!--<link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" />-->
         <link href="{{asset('css/custom.css')}}" type="text/css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.3.3/css/fixedColumns.dataTables.min.css">
 
     </head>
     <body>
@@ -70,11 +71,13 @@
         <script type="text/javascript" src="{!! url('js/bootstrap.min.js') !!}"></script>
         <!--<script type="text/javascript" src="{!! url('js/jquery.dataTables.min.js') !!}"></script>-->
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    	<script>
+    	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/fixedcolumns/3.3.3/js/dataTables.fixedColumns.min.js"></script>
+            <script>
     		$(document).ready(function() {
     			$('#DataList').dataTable({
     				"aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tất cả"]],
     				"iDisplayLength": 10,
+                    
     				"oLanguage": {
     					"sLengthMenu": "Hiển thị _MENU_ dòng mỗi trang",
     					"oPaginate": {
@@ -89,10 +92,17 @@
     					"sInfo": "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ dòng được tìm thấy",
     					"sInfoEmpty" : "Không tìm thấy",
     					"sInfoFiltered": " (trong tổng số _MAX_ dòng)"
-    				}
+    				},
+                    "scrollY":        "400px",
+                    "scrollX":        true,
+                    "scrollCollapse": true,
+                    "fixedColumns":   {
+                        leftColumns: 1,
+                        rightColumns: 2
+                    }
     			});
     		});
-    	</script>
+            </script>
     <div class="coppy-right">
     <div class="container">
         © Copyright 2021 BTP Holdings, All rights reserved.

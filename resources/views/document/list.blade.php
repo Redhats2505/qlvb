@@ -55,12 +55,20 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="table-responsive">
             <p><a class="btn btn-primary" href="{{ url('/tailieu/create') }}">Thêm mới</a></p>
-            <table id="DataList" class="table table-bordered table-hover">
+            <table id="DataList" class="table table-bordered table-hover" style="width:100%">
                 <thead>
                     <tr>
                         <th>STT</th>
                         <th>Tiêu đề</th>
                         <th>Diễn giải</th>
+                        <th>Ngày nộp đơn</th>
+                        <th>Số đơn</th>
+                        <th>Ngày cấp văn bằng</th>
+                        <th>Số văn bằng</th>
+                        <th>Nhóm văn bằng</th>
+                        <th>Chủ sở hữu</th>
+                        <th>Nước bảo hộ</th>
+                        <th>Loại tài liệu</th>
                         <th>Hết hạn</th>
                         <th>Cảnh báo</th>
                         <th>Tài liệu</th>
@@ -78,14 +86,22 @@
                         <?php //Lấy tên tài liệu?>
                         <td><a href="/tailieu/{{ $tailieu->id }}">{{ $tailieu->title }}</td>
                         <?php //Lấy số điện thoại?>
-                        <td><a href="/tailieu/{{ $tailieu->id }}">{{ $tailieu->description }}</td>
-                        <td>{{ $tailieu->date_expried }}</td>
+                        <td><a href="/tailieu/{{ $tailieu->id }}">{{ $tailieu->descriptions }}</td>
+                        <td>{{ $tailieu->regis_date }}</td>
+                        <td>{{ $tailieu->regis_form_no }}</td>
+                        <td>{{ $tailieu->effective_date }}</td>
+                        <td>{{ $tailieu->effective_no }}</td>
+                        <td>{{ $tailieu->group }}</td>
+                        <td>{{ $tailieu->owner }}</td>
+                        <td>{{ $tailieu->country }}</td>
+                        <td>{{ $tailieu->types }}</td>
+                        <td>{{ $tailieu->expried_date }}</td>
                         <td>{{ $tailieu->notif_date }} ngày</td>
                         <td style="text-align: center; vertical-align: middle; width: 10%;">
 							@if($tailieu->document != '')
-								<a class="btn btn-primary" href="/public/upload/Document/{{ $tailieu->document }}">Download về máy</a>
+								<a class="btn btn-primary" href="/upload/Document/{{ $tailieu->document }}">Download về máy</a>
 							@else
-								<img onclick="MymodalImage(this);" src="/public/upload/Document/nofile.png" alt="Chưa up tài liệu" style="cursor: zoom-in;" width="60"/>
+								<img onclick="MymodalImage(this);" src="/upload/Document/nofile.png" alt="Chưa up tài liệu" style="cursor: zoom-in;" width="60"/>
 							@endif
 						</td>
                         <td>{{ $tailieu->status }}</td>

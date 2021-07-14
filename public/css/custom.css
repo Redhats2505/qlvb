@@ -104,7 +104,6 @@ th::after {
       table-layout: fixed;
       border-collapse: collapse;
       width: 100%;
-      max-width: 100px;
     }
     td,th {
       padding: 20px;
@@ -125,4 +124,26 @@ body{
 }
 html{
     height: 100%; 
+}
+#DataList{
+    width:auto;
+}
+.dataTables_scroll th, td { 
+    max-width: 300px; 
+}
+div.dataTables_wrapper {
+    width: 1110px;
+}
+tr { height: 40px; }
+table.dataTable{
+    margin: 0px !important;
+}
+.table-form {
+    width: 1110px;
+    border-collapse: separate;
+}
+.cell-form{
+    width: 555px ;
+    padding: 0px;
+    border: none;  
 }

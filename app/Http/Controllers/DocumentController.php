@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Document;
+use App\Models\Documents;
 use Illuminate\Support\Facades\DB;
 use Session;
 
@@ -19,7 +19,14 @@ class DocumentController extends Controller
         	//Lấy danh sách tài liệu từ database
 	$getData = DB::table('documents as docs')
 	->leftJoin('status as status', 'docs.status', '=', 'status.id')
-	->select('docs.id','docs.title as title','docs.description','docs.document','docs.date_expried','docs.notif_date','docs.email_notif','status.title as status')->get();
+	->leftJoin('document_country as country', 'docs.document_country', '=', 'country.id')
+	->leftJoin('document_group as group', 'docs.document_group', '=', 'group.id')
+	->leftJoin('document_owner as owner', 'docs.document_owner', '=', 'owner.id')
+	->leftJoin('document_types as types', 'docs.document_types', '=', 'types.id')
+	->select('docs.id','docs.title as title','docs.descriptions','regis_date','regis_form_no','effective_date',
+	'effective_no','document','expried_date','notif_date','docs.notif_email','status.name as status',
+	'country.name as country','owner.name as owner','types.name as types','group.name as group','note')
+	->get();
 	
 	//Gọi đến file list.blade.php trong thư mục "resources/views/tailieu" với giá trị gửi đi tên listtailieu = $getData
 	return view('document.list')->with('listtailieu',$getData);
@@ -33,7 +40,16 @@ class DocumentController extends Controller
     public function create()
     {
         //
-        return view('document.create');
+		$owners = DB::table('document_owner')->select('id','name')->get();
+		$types = DB::table('document_types')->select('id','name')->get();
+		$countrys = DB::table('document_country')->select('id','name')->get();
+		$groups = DB::table('document_group')->select('id','name')->get();
+		$statuss = DB::table('status')->select('id','name')->get();
+        return view('document.create')->with('owners',$owners)
+										->with('types',$types)
+										->with('countrys',$countrys)
+										->with('groups',$groups)
+										->with('statuss',$statuss);
     }
 
     /**
@@ -51,12 +67,12 @@ class DocumentController extends Controller
 		[
 			//Kiểm tra giá trị rỗng
 			'title' => 'required',
-			'description' => 'required',
+			'descriptions' => 'required',
 		],			
 		[
 			//Tùy chỉnh hiển thị thông báo
 			'title.required' => 'Xin vui lòng điền tiêu đề tài liệu!',
-			'description.required' => 'Xin vui lòng điền miêu tả tài liệu!!',
+			'descriptions.required' => 'Xin vui lòng điền miêu tả tài liệu!!',
 		]
 	);
 	
@@ -88,19 +104,40 @@ class DocumentController extends Controller
     	//Lấy giá trị tài liệu  đã nhập
     	$allRequest  = $request->all();
     	$title  = $allRequest['title'];
-    	$description = $allRequest['description'];
-    	$date_expried = $allRequest['date_expried'];
+    	$descriptions = $allRequest['descriptions'];
+		$regis_date = $allRequest['regis_date'];
+		$regis_form_no = $allRequest['regis_form_no'];
+		$effective_date = $allRequest['effective_date'];
+		$effective_no = $allRequest['effective_no'];
+    	$owner = $allRequest['owner'];
+		$group = $allRequest['group'];
+		$country = $allRequest['country'];
+		$types = $allRequest['types'];
+		$status = $allRequest['status'];
+		$expried_date = $allRequest['expried_date'];
         $notif_date = $allRequest['notif_date'];
-		$email_notif = $allRequest['email_notif'];
+		$notif_email = $allRequest['notif_email'];
+		$note = $allRequest['note'];
+		
+		
     	//Gán giá trị vào array
     	$dataInsertToDatabase = array(
     		'title'  => $title,
-    		'description' => $description,
+    		'descriptions' => $descriptions,
             'document' => $gettailieu,
-            'date_expried' => $date_expried,
+			'regis_date' => $regis_date,
+			'regis_form_no' => $regis_form_no,
+			'effective_date' => $effective_date,
+			'effective_no' => $effective_no,
+            'expried_date' => $expried_date,
             'notif_date' => $notif_date,
-			'email_notif' => $email_notif,
-			'status'=> '1',
+			'notif_email' => $notif_email,
+			'document_group'=>$group,
+			'document_owner'=>$owner,
+			'document_country'=>$country,
+			'document_types'=>$types,
+			'status'=> $status,
+			'note'=> $note,
     		'created_at' => date('Y-m-d H:i:s'),
     		'updated_at' => date('Y-m-d H:i:s'),
     	);
@@ -117,6 +154,7 @@ class DocumentController extends Controller
     	
     	//Thực hiện chuyển trang
     	return redirect('tailieu');
+		
     }
 
     /**
@@ -127,9 +165,19 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-    $getData = DB::table('documents')->select('id','title','description','document','date_expried','notif_date','email_notif')->where('id',$id)->get();
+		$getData = DB::table('documents as docs')
+		->leftJoin('status as status', 'docs.status', '=', 'status.id')
+		->leftJoin('document_country as country', 'docs.document_country', '=', 'country.id')
+		->leftJoin('document_group as group', 'docs.document_group', '=', 'group.id')
+		->leftJoin('document_owner as owner', 'docs.document_owner', '=', 'owner.id')
+		->leftJoin('document_types as types', 'docs.document_types', '=', 'types.id')
+		->select('docs.id','docs.title as title','docs.descriptions','regis_date','regis_form_no','effective_date',
+		'effective_no','document','expried_date','notif_date','docs.notif_email','status.name as status',
+		'country.name as country','owner.name as owner','types.name as types','group.name as group','note')
+		->where('docs.id',$id)->get();
     
     return view('document.show')->with('gettailieuById2',$getData);
+
     }
 
     /**
@@ -141,10 +189,24 @@ class DocumentController extends Controller
     public function edit($id)
     {
         	//Lấy dữ liệu từ Database với các trường được lấy và với điều kiện id = $id
-	$getData = DB::table('documents')->select('id','title','description','document','date_expried','notif_date','email_notif')->where('id',$id)->get();
+	$getData = DB::table('documents')
 	
+		->select('id','title','descriptions','regis_date','regis_form_no','effective_date',
+		'effective_no','document','expried_date','notif_date','notif_email','status',
+		'document_country as country','document_owner as owner','document_types as types','document_group as group','note')
+		->where('id',$id)->get();
+		$owners = DB::table('document_owner')->select('id','name')->get();
+		$types = DB::table('document_types')->select('id','name')->get();
+		$countrys = DB::table('document_country')->select('id','name')->get();
+		$groups = DB::table('document_group')->select('id','name')->get();
+		$statuss = DB::table('status')->select('id','name')->get();
 	//Gọi đến file edit.blade.php trong thư mục "resources/views/tailieu" với giá trị gửi đi tên gettailieuById = $getData
-	return view('document.edit')->with('gettailieuById',$getData);
+	return view('document.edit')->with('gettailieuById',$getData)
+								->with('owners',$owners)
+								->with('types',$types)
+								->with('countrys',$countrys)
+								->with('statuss',$statuss)
+								->with('groups',$groups);
     }
 
     /**
@@ -163,12 +225,22 @@ class DocumentController extends Controller
 	//Thực hiện câu lệnh update với các giá trị $request trả về
 	$updateData = DB::table('documents')->where('id', $request->id)->update([
 		'title' => $request->title,
-		'description' => $request->description,
+		'descriptions' => $request->descriptions,
         'document' => $request->document,
-        'date_expried' => $request->date_expried,
-		'email_notif' => $request->email_notif,
-        'notif_date' => $request->notif_date,
-		'updated_at' => date('Y-m-d H:i:s')
+		'updated_at' => date('Y-m-d H:i:s'),
+		'regis_date' => $request->regis_date,
+		'regis_form_no' => $request->regis_form_no,
+		'effective_date' => $request->effective_date,
+		'effective_no' => $request->effective_no,
+		'expried_date' => $request->expried_date,
+		'notif_date' => $request->notif_date,
+		'notif_email' => $request->notif_email,
+		'document_group'=>$request->group,
+		'document_owner'=>$request->owner,
+		'document_country'=>$request->country,
+		'document_types'=>$request->types,
+		'status'=> $request->status,
+		'note'=> $request->note
 	]);
 	
 	//Kiểm tra lệnh update để trả về một thông báo

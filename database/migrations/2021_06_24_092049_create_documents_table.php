@@ -16,16 +16,27 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->string('description');
+            $table->string('descriptions');
             $table->string('document')->nullable();
-            $table->date('date_expried')->nullable();
+            $table->date('regis_date')->nullable();
+            $table->string('regis_form_no')->nullable();
+            $table->date('effective_date')->nullable();
+            $table->string('effective_no')->nullable();
+            $table->date('expried_date')->nullable();
             $table->integer('notif_date')->nullable();
-            $table->string('email_notif')->nullable();
+            $table->string('notif_email')->nullable();
+            $table->integer('document_group')->nullable();
+            $table->integer('document_group2')->nullable();
+            $table->integer('document_owner')->nullable();
+            $table->integer('document_types')->nullable();
+            $table->integer('document_country')->nullable();
             $table->integer('status')->nullable();
             $table->integer('id_parent')->nullable();
+            $table->string('note')->nullable();
             $table->uuid('Create_uid')->nullable();
             $table->uuid('Edit_uid')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

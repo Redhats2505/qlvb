@@ -15,5 +15,9 @@ class DatabaseSeeder extends Seeder
          $this->call(statusseeder::class);
          $this->call(usertableseeder::class);
          $this->call(user_leveltableseeder::class);
+         $this->call(document_countrySeeder::class);
+         $this->call(document_groupSeeder::class);
+         $this->call(document_ownerSeeder::class);
+         $this->call(document_typesSeeder::class);
     }
 }

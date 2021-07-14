@@ -26,16 +26,19 @@ class EmailController extends Controller
             ])->get()-> ToArray();           
      foreach($documents_data as $key => $docs){
          $title = ($docs->title);
-         $email_notif = ($docs->email_notif);
+         $email_notif = str_replace(' ','',$docs->email_notif);
+         $email_notif = explode(',',($email_notif));
 
          //$path_file = Config::get('custom_path.certificates').'/'. $certificate->image;
          $data = ['title' => $title, 'email_notif' => $email_notif];
         $test = Mail::send('email.email', $data, function($message) use ($title,$email_notif) {
+          //$message->to(['cntt.phanmem@btpholdings.vn','cntt.hethong@btpholdings.vn']);
           $message->to($email_notif);
           $message->subject('Email cảnh báo hết hạn tài liệu');
-          $message->from('cntt.hoso@btpholdings.vn','Quản lý Hồ sơ BTP Holdings');
+          $message->from('hoso@btpholdings.vn','Quản lý Hồ sơ BTP Holdings');
         });    
-           //echo $data;              
+           //echo $email_notif1;
+                              
     }
      }
 }

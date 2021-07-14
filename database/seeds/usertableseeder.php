@@ -19,6 +19,24 @@ class usertableseeder extends Seeder
             'email' => 'cntt.phanmem@btpholdings.vn',
             'password' => Hash::make('Btp@123456'),
             'level' => '1',
+            'created_at' => date('Y-m-d H:i:s'),
+    		'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('users')->insert([
+            'username' => 'tien.lh',
+            'email' => 'tien.lh@btpholdings.vn',
+            'password' => Hash::make('Btp@123456'),
+            'level' => '2',
+            'created_at' => date('Y-m-d H:i:s'),
+    		'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('users')->insert([
+            'username' => 'luu',
+            'email' => 'luu@btpholdings.vn',
+            'password' => Hash::make('Btp@123456'),
+            'level' => '2',
+            'created_at' => date('Y-m-d H:i:s'),
+    		'updated_at' => date('Y-m-d H:i:s'),
         ]);
     }
 }

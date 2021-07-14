@@ -1,11 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
-class user_leveltableseeder extends Seeder
+class document_typesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,19 +11,18 @@ class user_leveltableseeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_level')->insert([
-            'name' => 'Super_admin',
+        DB::table('document_types')->insert([
+            'name' => 'Sở hữu trí tuệ',
             'created_at' => date('Y-m-d H:i:s'),
     		'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        DB::table('user_level')->insert([
-            'name' => 'Admin',
+        DB::table('document_types')->insert([
+            'name' => 'Hợp đồng',
             'created_at' => date('Y-m-d H:i:s'),
     		'updated_at' => date('Y-m-d H:i:s'),
-
         ]);
-        DB::table('user_level')->insert([
-            'name' => 'Member',
+        DB::table('document_types')->insert([
+            'name' => 'Giấy phép',
             'created_at' => date('Y-m-d H:i:s'),
     		'updated_at' => date('Y-m-d H:i:s'),
         ]);
