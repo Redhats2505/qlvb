@@ -107,15 +107,10 @@
             </tr>
             <tr>
                 <td class="cell-form"> 
-                    <div class="form-group">
-                    <label for="group">Nhóm văn bằng</label>
-                        <select class="form-control" id="group" name="group" value="1">
-                        <option value="">-- Chọn nhóm văn bằng --</option>
-                            @foreach($groups as $group)
-                                <option value="{!! $group->id !!}" {!! ($group->id == 1) ? 'selected="selected"' : null !!}>{!! $group->name !!}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                <div class="form-group">
+                <label for="group">Lưu ý</label>
+                <input type="text" class="form-control" id="group"  name="group" height="10"/>
+                </div>
                 </td>
                 <td class="cell-form">
                     <div class="form-group">
@@ -157,7 +152,7 @@
         </table>
         <div class="form-group">
             <label for="notif_email">Email nhận thông báo</label>
-            <input type="email" class="form-control" id="notif_email"  name="notif_email" placeholder="Email" required mutiple/>
+            <input type="email" class="form-control" id="notif_email"  name="notif_email" placeholder="Email" required multiple/>
         </div>
         <div class="form-group">
         <label for="document">Upload file</label>
@@ -170,5 +165,4 @@
         <center><button type="submit" class="btn btn-primary">Thêm</button></center>
     </form>
 </div>
-
 @endsection

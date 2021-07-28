@@ -60,17 +60,6 @@
                     <tr>
                         <th>STT</th>
                         <th>Tiêu đề</th>
-                        <th>Diễn giải</th>
-                        <th>Ngày nộp đơn</th>
-                        <th>Số đơn</th>
-                        <th>Ngày cấp văn bằng</th>
-                        <th>Số văn bằng</th>
-                        <th>Nhóm văn bằng</th>
-                        <th>Chủ sở hữu</th>
-                        <th>Nước bảo hộ</th>
-                        <th>Loại tài liệu</th>
-                        <th>Hết hạn</th>
-                        <th>Cảnh báo</th>
                         <th>Tài liệu</th>
                         <th>Trạng thái</th>
                         <th>Sửa</th>
@@ -81,22 +70,8 @@
                 <?php //Khởi tạo vòng lập foreach lấy giá vào bảng?>
                 @foreach($listtailieu as $key => $tailieu)
                     <tr>
-                        <?php //Điền số thứ tự?>
                         <td>{{ $key+1 }}</td>
-                        <?php //Lấy tên tài liệu?>
                         <td><a href="/tailieu/{{ $tailieu->id }}">{{ $tailieu->title }}</td>
-                        <?php //Lấy số điện thoại?>
-                        <td><a href="/tailieu/{{ $tailieu->id }}">{{ $tailieu->descriptions }}</td>
-                        <td>{{ $tailieu->regis_date }}</td>
-                        <td>{{ $tailieu->regis_form_no }}</td>
-                        <td>{{ $tailieu->effective_date }}</td>
-                        <td>{{ $tailieu->effective_no }}</td>
-                        <td>{{ $tailieu->group }}</td>
-                        <td>{{ $tailieu->owner }}</td>
-                        <td>{{ $tailieu->country }}</td>
-                        <td>{{ $tailieu->types }}</td>
-                        <td>{{ $tailieu->expried_date }}</td>
-                        <td>{{ $tailieu->notif_date }} ngày</td>
                         <td style="text-align: center; vertical-align: middle; width: 10%;">
 							@if($tailieu->document != '')
 								<a class="btn btn-primary" href="/upload/Document/{{ $tailieu->document }}">Download về máy</a>

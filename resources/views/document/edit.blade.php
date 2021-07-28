@@ -109,15 +109,10 @@
             </tr>
             <tr>
                 <td class="cell-form"> 
-                    <div class="form-group">
-                    <label for="group">Nhóm văn bằng</label>
-                        <select class="form-control" id="group" name="group" required>
-                        <option value="{{ $gettailieuById[0]->group }}">-- Chọn nhóm văn bằng --</option>
-                            @foreach($groups as $group)
-                            <option value="{!! $group->id !!}" {!! ($gettailieuById[0]-> group == $group->id) ? 'selected="selected"' : null !!}>{!! $group->name !!}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="group">Lưu ý</label>
+                    <input type="text" class="form-control" id="group" name="group" value="{{ $gettailieuById[0]->group }}" />
+                </div>
                 </td>
                 <td class="cell-form">
                     <div class="form-group">
