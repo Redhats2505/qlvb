@@ -110,7 +110,7 @@
             <tr>
                 <td class="cell-form"> 
                 <div class="form-group">
-                    <label for="group">Lưu ý</label>
+                    <label for="group">Nhóm văn bản</label>
                     <input type="text" class="form-control" id="group" name="group" value="{{ $gettailieuById[0]->group }}" />
                 </div>
                 </td>
