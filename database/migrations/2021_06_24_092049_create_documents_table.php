@@ -25,7 +25,7 @@ class CreateDocumentsTable extends Migration
             $table->date('expried_date')->nullable();
             $table->integer('notif_date')->nullable();
             $table->string('notif_email')->nullable();
-            $table->integer('document_group')->nullable();
+            $table->string('document_group')->nullable();
             $table->integer('document_group2')->nullable();
             $table->integer('document_owner')->nullable();
             $table->integer('document_types')->nullable();

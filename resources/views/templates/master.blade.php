@@ -93,13 +93,13 @@
     					"sInfoEmpty" : "Không tìm thấy",
     					"sInfoFiltered": " (trong tổng số _MAX_ dòng)"
     				},
-                    "scrollY":        "400px",
-                    "scrollX":        true,
-                    "scrollCollapse": true,
-                    "fixedColumns":   {
-                        leftColumns: 1,
-                        rightColumns: 2
-                    }
+                   // "scrollY":        "400px",
+                   // "scrollX":        true,
+                    //"scrollCollapse": true,
+                   // "fixedColumns":   {
+                    //    leftColumns: 1,
+                    //    rightColumns: 2
+                    //}
     			});
     		});
             </script>
