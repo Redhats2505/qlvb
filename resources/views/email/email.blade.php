@@ -5,7 +5,7 @@
 </head>
 <body>
  
- <h1>tài liệu {{$title}} sắp hết hạn</h1>
+ <h3>Tài liệu {{$title}} sắp hết hạn, đề nghị anh chị vào xử lý.</h3>
  <p>Thank you, </p>
  
 </body>

@@ -5,6 +5,8 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use DB;
+use Mail;
+use App\Mail\MailNotify;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -12,9 +14,9 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [
-        //
-    ];
+   // protected $commands = [
+        
+   // ];
 
     /**
      * Define the application's command schedule.
@@ -26,31 +28,34 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        
         $schedule->call(function(){
             $documents_data = DB::table('documents')
-            ->select('id','title as title','description','document','date_expried','notif_date','email_notif')
-            ->whereRaw('DATEDIFF(date_expried,now()) <= notif_date')
+            ->select('id','title as title','descriptions','document','expried_date','notif_date','notif_email')
+            ->whereRaw('DATEDIFF(expried_date,now()) <= notif_date')
             ->where([
                 ['status', '<>', '3'],
                 ['status', '<>', '4'],
                     ])->get()-> ToArray();           
              foreach($documents_data as $key => $docs){
                  $title = ($docs->title);
-                 $email_notif = str_replace(' ','',$docs->email_notif);
-                 $email_notif = explode(',',($email_notif));
+                 $notif_email = str_replace(' ','',$docs->notif_email);
+                 $notif_email = explode(',',($notif_email));
         
                  //$path_file = Config::get('custom_path.certificates').'/'. $certificate->image;
-                 $data = ['title' => $title, 'email_notif' => $email_notif];
-                $test = Mail::send('email.email', $data, function($message) use ($title,$email_notif) {
+                 $data = ['title' => $title, 'notif_email' => $notif_email];
+                $test = Mail::send('email.email', $data, function($message) use ($title,$notif_email) {
                   //$message->to(['cntt.phanmem@btpholdings.vn','cntt.hethong@btpholdings.vn']);
-                  $message->to($email_notif);
+                  $message->to($notif_email);
                   $message->subject('Email cảnh báo hết hạn tài liệu');
                   $message->from('hoso@btpholdings.vn','Quản lý Hồ sơ BTP Holdings');
                 });                          
             }
         })->daily();
+        
+        //$schedule->call('App\Http\Controllers\EmailController@SendEmail')->everyMinute();
     }
-
+    
     /**
      * Register the commands for the application.
      *
@@ -58,7 +63,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+       // $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
     }
