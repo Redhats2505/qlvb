@@ -26,3 +26,4 @@ Route::post('tailieu/update', 'DocumentController@update'); // Xử lý sửa t�
 Route::get('tailieu/{id}/delete', 'DocumentController@destroy'); // Xóa tài liệu
 Route::get('tailieu/{id}', 'DocumentController@show'); // Hiển thị chi tiết tài liệu
 Route::get('mail', 'EmailController@sendEMail');
+Route::get('tailieu/{id}/download', 'DownloadController@download'); // Sửa tài liệu

@@ -156,7 +156,7 @@
         </div>
         <div class="form-group">
         <label for="document">Upload file</label>
-        <input type="file" class="form-control" id="document"  name="document" multiple/>
+        <input type="file" class="form-control" id="document"  name="document[]" multiple/>
         </div>
         <div class="form-group">
         <label for="note">Lưu ý</label>

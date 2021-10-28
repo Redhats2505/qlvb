@@ -74,7 +74,7 @@
                         <td><a href="/tailieu/{{ $tailieu->id }}">{{ $tailieu->title }}</td>
                         <td style="text-align: center; vertical-align: middle; width: 10%;">
 							@if($tailieu->document != '')
-								<a class="btn btn-primary" href="/upload/Document/{{ $tailieu->document }}">Download về máy</a>
+								<a class="btn btn-primary" href="/tailieu/{{ $tailieu->id }}/download">Download về máy</a>
 							@else
 								<img onclick="MymodalImage(this);" src="/upload/Document/nofile.png" alt="Chưa up tài liệu" style="cursor: zoom-in;" width="60"/>
 							@endif

@@ -78,25 +78,41 @@ class DocumentController extends Controller
 	
 	//Lưu file lý lịch khi có file
 	$gettailieu = '';
-	if($request->hasFile('document')){
+	$data = [];
+	if($request->hasFile('document'))
+	{
 		$this->validate($request, 
 			[
 				//Kiểm tra đúng file đuôi .doc hay .docx và dung lượng không quá 5M
-				'document' => 'mimes:pdf,doc,docx|max:30720',
+				//'document' => 'mimes:pdf,doc,docx|max:30720',
 			],			
 			[
 				//Tùy chỉnh hiển thị thông báo không thõa điều kiện
-				'document.mimes' => 'Chỉ chấp nhận lý lịch với đuôi .pdf,.doc .docx',
-				'document.max' => 'Lý lịch giới hạn dung lượng không quá 30M',
+				//'document.mimes' => 'Chỉ chấp nhận lý lịch với đuôi .pdf,.doc .docx',
+				//'document.max' => 'Lý lịch giới hạn dung lượng không quá 30M',
 			]
 		);
 		
 		//Lưu file vào thư mục public/upload/document
-		$document = $request->file('document');
-		$gettailieu = time().'_'.$document->getClientOriginalName();
-		$destinationPath = public_path('/upload/Document');
-		$document->move($destinationPath, $gettailieu); 
+		//$document = $request->file('document');
+		
+		//dd($request->all('document'));
+			foreach($request->all('document') as $document)
+			{
+				foreach($document as $document2)
+				{
+				$gettailieu = time().'_'.$document2->getClientOriginalName();
+				$destinationPath = public_path('/upload/Document');
+				$document2->move($destinationPath, $gettailieu); 
+				$data[] = $gettailieu; 
+				}
+			}
+		
+		$dt = implode(', ',$data);
+		//dd($dt);
 	}
+		
+        //$file=json_encode($data);
 
     	//Set timezone
     	date_default_timezone_set("Asia/Ho_Chi_Minh");
@@ -124,7 +140,7 @@ class DocumentController extends Controller
     	$dataInsertToDatabase = array(
     		'title'  => $title,
     		'descriptions' => $descriptions,
-            'document' => $gettailieu,
+            'document' => $dt,
 			'regis_date' => $regis_date,
 			'regis_form_no' => $regis_form_no,
 			'effective_date' => $effective_date,
@@ -222,11 +238,46 @@ class DocumentController extends Controller
 	//Set timezone
 	date_default_timezone_set("Asia/Ho_Chi_Minh");	
  
+	$gettailieu = '';
+	$data = [];
+	if($request->hasFile('document'))
+	{
+		$this->validate($request, 
+			[
+				//Kiểm tra đúng file đuôi .doc hay .docx và dung lượng không quá 5M
+				//'document' => 'mimes:pdf,doc,docx|max:30720',
+			],			
+			[
+				//Tùy chỉnh hiển thị thông báo không thõa điều kiện
+				//'document.mimes' => 'Chỉ chấp nhận lý lịch với đuôi .pdf,.doc .docx',
+				//'document.max' => 'Lý lịch giới hạn dung lượng không quá 30M',
+			]
+		);
+		
+		//Lưu file vào thư mục public/upload/document
+		//$document = $request->file('document');
+		
+		//dd($request->all('document'));
+			foreach($request->all('document') as $document)
+			{
+				foreach($document as $document2)
+				{
+				$gettailieu = time().'_'.$document2->getClientOriginalName();
+				$destinationPath = public_path('/upload/Document');
+				$document2->move($destinationPath, $gettailieu); 
+				$data[] = $gettailieu; 
+				}
+			}
+		
+		$dt = implode(', ',$data);
+		//dd($dt);
+	}
+
 	//Thực hiện câu lệnh update với các giá trị $request trả về
 	$updateData = DB::table('documents')->where('id', $request->id)->update([
 		'title' => $request->title,
 		'descriptions' => $request->descriptions,
-        'document' => $request->document,
+        'document' => $dt,
 		'updated_at' => date('Y-m-d H:i:s'),
 		'regis_date' => $request->regis_date,
 		'regis_form_no' => $request->regis_form_no,

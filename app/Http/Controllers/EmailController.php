@@ -36,9 +36,7 @@ class EmailController extends Controller
           $message->to($email_notif);
           $message->subject('Email cảnh báo hết hạn tài liệu');
           $message->from('hoso@btpholdings.vn','Quản lý Hồ sơ BTP Holdings');
-        });    
-           //echo $email_notif1;
-                              
+        });                          
     }
-     }
+    }
 }

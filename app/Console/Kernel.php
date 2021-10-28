@@ -27,26 +27,27 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->call(function(){
-                $documents_data = DB::table('documents')
-                ->select('id','title as title','description','document','date_expried','notif_date','email_notif')
-                ->whereRaw('DATEDIFF(date_expried,now()) <= notif_date')
-                ->where([
-                    ['status', '<>', '3'],
-                    ['status', '<>', '4'],
-                        ])->get()-> ToArray();           
-                foreach($documents_data as $key => $docs){
-                    $title = ($docs->title);
-                    $email_notif = ($docs->email_notif);
-
-                    //$path_file = Config::get('custom_path.certificates').'/'. $certificate->image;
-                    $data = ['title' => $title, 'email_notif' => $email_notif];
-                    $test = Mail::send('email.email', $data, function($message) use ($title,$email_notif) {
-                    $message->to($email_notif);
-                    $message->subject('Email cảnh báo hết hạn tài liệu');
-                    $message->from('cntt.hoso@btpholdings.vn','Quản lý Hồ sơ BTP Holdings');
-                    });    
-                    //echo $data;              
-                }
+            $documents_data = DB::table('documents')
+            ->select('id','title as title','description','document','date_expried','notif_date','email_notif')
+            ->whereRaw('DATEDIFF(date_expried,now()) <= notif_date')
+            ->where([
+                ['status', '<>', '3'],
+                ['status', '<>', '4'],
+                    ])->get()-> ToArray();           
+             foreach($documents_data as $key => $docs){
+                 $title = ($docs->title);
+                 $email_notif = str_replace(' ','',$docs->email_notif);
+                 $email_notif = explode(',',($email_notif));
+        
+                 //$path_file = Config::get('custom_path.certificates').'/'. $certificate->image;
+                 $data = ['title' => $title, 'email_notif' => $email_notif];
+                $test = Mail::send('email.email', $data, function($message) use ($title,$email_notif) {
+                  //$message->to(['cntt.phanmem@btpholdings.vn','cntt.hethong@btpholdings.vn']);
+                  $message->to($email_notif);
+                  $message->subject('Email cảnh báo hết hạn tài liệu');
+                  $message->from('hoso@btpholdings.vn','Quản lý Hồ sơ BTP Holdings');
+                });                          
+            }
         })->daily();
     }
 

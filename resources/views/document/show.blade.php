@@ -93,7 +93,7 @@
                 <td class="cell-form">
                     <div class="form-group">
                     <label for="country">Nước bảo hộ</label>
-                    <input type="text" class="form-control" id="owner"  name="owner" value="{{ $gettailieuById2[0]->owner }}" readonly/>
+                    <input type="text" class="form-control" id="country"  name="country" value="{{ $gettailieuById2[0]->country }}" readonly/>
                     </div>
                 </td>
             </tr>
@@ -107,7 +107,7 @@
                 <td class="cell-form">
                     <div class="form-group">
                     <label for="owner">Chủ sở hữu</label>
-                    <input type="text" class="form-control" id="country"  name="country" value="{{ $gettailieuById2[0]->country }}" readonly/>
+                    <input type="text" class="form-control" id="owner"  name="owner" value="{{ $gettailieuById2[0]->owner }}" readonly/>
                     </div>
                 </td>
                 <td class="cell-form">
@@ -137,8 +137,8 @@
             <input type="email" class="form-control" id="notif_email"  name="notif_email" value="{{ $gettailieuById2[0]->notif_email }}" readonly/>
         </div>
         <div class="form-group">
-            <label for="document">Upload file</label>
-            <input type="file" class="form-control" id="document"  name="document" value="{{ $gettailieuById2[0]->document }}" readonly/>
+            <label for="document2">File Đã Upload</label>
+            <input type="text" class="form-control" name="document2" placeholder="document2" value="{{ $gettailieuById2[0]->document }}" readonly/>
         </div>
         <div class="form-group">
             <label for="note">Lưu ý</label>

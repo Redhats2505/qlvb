@@ -157,8 +157,12 @@
             <input type="email" class="form-control" id="notif_email" name="notif_email" placeholder="email" value="{{ $gettailieuById[0]->notif_email }}" required multiple/>
         </div>
         <div class="form-group">
+            <label for="document2">File Đã Upload</label>
+            <input type="text" class="form-control" name="document2" placeholder="document2" value="{{ $gettailieuById[0]->document }}" readonly/>
+        </div>
+        <div class="form-group">
             <label for="document">Upload file</label>
-            <input type="file"  class="form-control" id="document"  name="document" value="{{ $gettailieuById[0]->document }}" multiple />
+            <input type="file"  class="form-control" id="document"  name="document[]" value="{{ $gettailieuById[0]->document }}" multiple />
         </div>
         <div class="form-group">
             <label for="note">Lưu ý</label>
