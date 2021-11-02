@@ -51,10 +51,13 @@
     }
 }
 </style>
+
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="table-responsive">
-            <p><a class="btn btn-primary" href="{{ url('/tailieu/create') }}">Thêm mới</a></p>
+            <p><a class="btn btn-primary" href="{{ url('/tailieu/create') }}">Thêm mới</a>
+            <a class="btn btn-primary" href="{{ route('export') }}">Báo cáo</a></p>
+            
             <table id="DataList" class="table table-bordered table-hover" style="width:100%">
                 <thead>
                     <tr>

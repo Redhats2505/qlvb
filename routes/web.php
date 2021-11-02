@@ -27,3 +27,4 @@ Route::get('tailieu/{id}/delete', 'DocumentController@destroy'); // Xóa tài li
 Route::get('tailieu/{id}', 'DocumentController@show'); // Hiển thị chi tiết tài liệu
 Route::get('mail', 'EmailController@sendEMail');
 Route::get('tailieu/{id}/download', 'DownloadController@download'); // Sửa tài liệu
+Route::get('export', 'ExportController@export')->name('export');
